@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <time.h>
+#include <stdlib.h>
+
 
 void rules ();
 void draw (int, char);
 
 int main()
 {
+    system("color 3");
 	char player_name[100];
 	int amt, bett_amt, guess, dice;
 	char choice[1];
@@ -25,11 +28,13 @@ int main()
 	printf("\n\nEnter amount to start the game : Rs. ");
 	scanf ("%d", &amt);
 
+	system("cls");
+
 	do
 	{
 		rules();
 
-		printf ("\n\nYour current balance is Rs. %d\n", amt);
+		printf ("\n\n Your current balance is Rs. %d\n", amt);
 
 		do
 		{
@@ -56,25 +61,32 @@ int main()
 		}
 		else
 		{
-			printf ("woops, You loose. You lost Rs. %d", bett_amt);
+			printf ("woops, You lose. You lost Rs. %d", bett_amt);
 			amt = amt - bett_amt;
 		}
 
 		if (amt <= 0)
 		{
-			printf ("You have no money :(");
+			printf ("\nYou have no money, restart the program to start from the beginning ");
 			break;
 		}
 
 		printf ("\n\nDo you want to play again (y/n)?");
 		scanf ("%s", choice);
-	}while (choice[0] == 'Y' || choice[0] == 'y');
+		system("cls");
+
+
+	}
+
+
+
+    while (choice[0] == 'Y' || choice[0] == 'y');
 
 	printf ("\n\n\n");
 
 	draw (70, '=');
 
-	printf ("\n\n Thanks for palying. :) Your balance amount is Rs. %d\n\n", amt);
+	printf ("\n\n Thanks for palying. Your balance amount is Rs. %d\n\n", amt);
 	draw (70,'=');
 	return 0;
 }
@@ -89,7 +101,7 @@ void rules ()
 
 	printf ("\t1. Choose any number between 1 to 29 \n");
 	printf ("\t2. If you win you will get 5 times of money you bet\n");
-	printf ("\t3. If you vet on wrong number you will loose your betting amount \n\n");
+	printf ("\t3. If you vet on wrong number you will lose your betting amount \n\n");
 
 	draw (80, '-');
 }
